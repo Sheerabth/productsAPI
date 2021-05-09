@@ -1,4 +1,4 @@
-# SocialComment-Endpoints
+# productsAPI-Endpoints
 Framework : Nodejs 
 Database : MongoDB
 
@@ -6,7 +6,7 @@ Register :
 
 Request Type : POST
 Route : /user/register 
-Request Body : Name, Email, Gender, Password
+Request Body : Name, Email, Password
 Response : User_Id
 Response-Headers : Refresh token, Access token
 
@@ -18,50 +18,61 @@ Request Body : Email, Password
 Response : User_Id, Access-Token
 Response-Headers : Refresh token, Access token
 
-Create Post : 
+Get Products List:
+
+Request Type : GET
+Route : /product
+Response : list of products
+Response Body : products
+
+Get Product :
+
+Request Type : GET
+Route : /product/:product_id
+Response : product
+
+Add Product :
 
 Request Type : POST
-Route : /post/create
-Request-Headers : Refresh token, Access token
-Request Body : Title, Content, Tags
-Response : Created post_id
+Route : /product
+Requst Body : name, image, description, totalQuantity, unitPrice
+Response : product
 
-Like/Dislike Post : 
+Delete Product : 
+
+Request Type : DELETE
+Route : /product/:product_id
+Response Body : message, deletedProduct
+
+Get Cart :
+
+Request Type : GET
+Route : /cart
+Request-Headers : Refresh token, Access token
+Response Body : cartProducts
+
+Add product to Cart :
+
+Request Type : POST
+Route : /cart
+Request-Headers : Refresh token, Access token
+Request Body : productId, quantity
+Response Body : message, cartProducts
+
+Edit Quantity of Product :
 
 Request Type : PATCH
-Route : /post/:type  
-Params : Type (Like/Dislike)
+Route : /cart/:product_id
 Request-Headers : Refresh token, Access token
-Request Body : PostId
-Response : Status, Message
+Request Body : quantity
+Response Body : message, cartStatus
 
-Comment on Post : 
+Delete product from Cart :
 
-Request Type : POST
-Route : /post/comment 
+Request Type : DELETE
+Route : /cart/:product_id
 Request-Headers : Refresh token, Access token
-Request Body : Post Id, Comment
-Response : Status, Comment, PostId
-
-Get liked users on Post : 
-
-Request Type : GET
-Route : /post/liked-users/:type
-Params : PostId
-Response : Dictionary of post_id with Liked user Details #Username, UserId
-
-Get liked users of all posts : 
-
-Request Type : GET
-Route : /post/all-liked-users 
-Response : Dictionary of post_id with Liked user Details #Username, UserId
-
-Get comments of user :
-
-Request Type : GET
-Route : /post/:user_id
-Params : UserId
-Response : Dictionary of post_id's with Comment and Post Title by an User
+Response Body : message, cartStatus
 
 Get Access Token after Expiry :
 
