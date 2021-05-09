@@ -35,6 +35,10 @@ app.use('/user', userRoute)
 app.use('/product', productRoute)
 app.use('/cart', cartRoute)
 
+app.get('/', (req, res) => {
+    res.status(200).send("Check Github Repo for API Endpoints")
+})
+
 app.listen(PORT, (err) => {
     if (err) console.log(err)
     console.log('Backend Server Listening on ' + PORT)

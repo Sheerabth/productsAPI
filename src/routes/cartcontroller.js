@@ -31,8 +31,8 @@ cartRoute.get('/', authenticate, async (req, res) => {
     }
 })
 
-cartRoute.post('/addproduct', authenticate, async (req, res) => {
-    let productId = req.body.id
+cartRoute.post('/', authenticate, async (req, res) => {
+    let productId = req.body.productId
     let userId = req.user_id
     let quantity = req.body.quantity ? req.body.quantity : 1
 
@@ -59,8 +59,8 @@ cartRoute.post('/addproduct', authenticate, async (req, res) => {
                 cartMessage = cart
             }
             res.status(200).send({
-                "Message" : "Done.",
-                "CartProducts" : cartMessage
+                "message" : "Done.",
+                "cartProducts" : cartMessage
             })
         }catch (err) {
             res.status(400).send({
@@ -85,7 +85,7 @@ cartRoute.patch('/:id', authenticate, async (req, res) => {
         })
         res.status(200).send({
             "message": "modified successfully",
-            "cartItems": cart
+            "cartStatus": cart
         })
     } catch (err) {
         res.status(400).send(err)
@@ -102,7 +102,7 @@ cartRoute.delete('/:id', authenticate, async (req, res) => {
         })
         res.status(200).send({
             "message": "deleted successfully",
-            "cartItems": cart
+            "cartStatus": cart
         })
     } catch (err) {
         res.status(400).send(err)
